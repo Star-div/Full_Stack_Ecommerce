@@ -21,6 +21,13 @@ export const addToCart = async (req, res) => {
 	try {
 		const { productId } = req.body;
 		const user = req.user;
+		if (user.role === 'admin') {
+            return res.status(403).json({ message: "Admins cannot add items to a cart." });
+        }
+
+		if (!Array.isArray(user.cartItems)) {
+            user.cartItems = [];
+        }
 
 		const existingItem = user.cartItems.find((item) => item.id === productId);
 		if (existingItem) {
