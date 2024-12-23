@@ -15,7 +15,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
 			toast.error("Please login to add products to cart", { id: "login" });
 			return;
 		} else {
-			console.log(product);
+			// console.log(product);
 			// add to cart
 			addToCart(product);
 		}
